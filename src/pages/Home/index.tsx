@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
+import React from 'react';
+import { View, Text } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from "./styles";
 
