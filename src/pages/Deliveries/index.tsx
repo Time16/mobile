@@ -5,6 +5,11 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import Config from "../../config/config";
 
+interface Location {
+  latitude: number;
+  longitude: number;
+}
+
 interface Delivery {
   id: number;
   status: number;
@@ -12,6 +17,7 @@ interface Delivery {
   size: String;
   pickupName: String;
   pickUpAdress: String;
+  pickUpLocation: Location;
   duration: number;
   distance: number;
   timeStart: number;
@@ -26,6 +32,7 @@ export default function Home() {
       size: "Grande",
       pickupName: "Padaria Alem do Pão",
       pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+      pickUpLocation: Config.NEIGHBOR_LOCATION,
       duration: 20,
       distance: 3,
       timeStart: 12,
@@ -37,6 +44,7 @@ export default function Home() {
       size: "Pequeno",
       pickupName: "Padaria Alem do Pão",
       pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+      pickUpLocation: Config.NEIGHBOR_LOCATION,
       duration: 20,
       distance: 3,
       timeStart: 12,
@@ -48,6 +56,7 @@ export default function Home() {
       size: "Grande",
       pickupName: "Padaria Alem do Pão",
       pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+      pickUpLocation: Config.NEIGHBOR_LOCATION,
       duration: 20,
       distance: 3,
       timeStart: 12,
@@ -122,17 +131,8 @@ export default function Home() {
 
                   <TouchableOpacity
                     style={styles.button}
-                    onPress={() => navigation.navigate('OrderDetail', {item: {
-                      id: '1',
-                      store: 'Padaria alem do Pao',
-                      address: 'R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340',
-                      location: Config.NEIGHBOR_LOCATION,
-                      schedulingTime: {
-                        initial: 12,
-                        final: 14
-                      }
-                    }})
-                  }>
+                    onPress={() => navigation.navigate('DeliveryFlow', {delivery: delivery})}
+                  >
                     <Text style={styles.buttonText}>Continuar</Text>
                   </TouchableOpacity>
                 </View>
