@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
@@ -17,43 +17,10 @@ interface Delivery {
 }
 
 export default function Home() {
-  const [deliveries, setDeliveries] = useState<Delivery[]>([
-    {
-      id: 478237472,
-      status: 0,
-      price: 9.52,
-      size: "Grande",
-      pickupName: "Padaria Alem do Pão",
-      pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-      duration: 20,
-      distance: 3,
-      timeStart: 12,
-    },
-    {
-      id: 4782372472,
-      status: 1,
-      price: 9.52,
-      size: "Pequeno",
-      pickupName: "Padaria Alem do Pão",
-      pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-      duration: 20,
-      distance: 3,
-      timeStart: 12,
-    },
-    {
-      id: 4782472,
-      status: 2,
-      price: 9.52,
-      size: "Grande",
-      pickupName: "Padaria Alem do Pão",
-      pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-      duration: 20,
-      distance: 3,
-      timeStart: 12,
-    },
-  ]);
+  const [deliveries, setDeliveries] = useState<Delivery[]>([]);
 
   const navigation = useNavigation();
+  const scrollView = useRef();
   const dictionary = [
     { status: "Pendente", addressLabel: "Buscar em" },
     { status: "Buscando", addressLabel: "Buscar em" },
@@ -62,71 +29,107 @@ export default function Home() {
 
   useEffect(() => {
     // get deliveries array from api
+    setDeliveries([
+      {
+        id: 478237472,
+        status: 0,
+        price: 9.52,
+        size: "Grande",
+        pickupName: "Padaria Alem do Pão",
+        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        duration: 20,
+        distance: 3,
+        timeStart: 12,
+      },
+      {
+        id: 4782372472,
+        status: 1,
+        price: 9.52,
+        size: "Pequeno",
+        pickupName: "Padaria Alem do Pão",
+        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        duration: 20,
+        distance: 3,
+        timeStart: 12,
+      },
+      {
+        id: 4782472,
+        status: 2,
+        price: 9.52,
+        size: "Grande",
+        pickupName: "Padaria Alem do Pão",
+        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        duration: 20,
+        distance: 3,
+        timeStart: 12,
+      },
+    ]);
   }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Suas entregas</Text>
-        <Image style={styles.headerImage} source={require("../../assets/options.png")} />
+        <Image source={require("../../assets/options.png")} />
       </View>
 
       {deliveries.length > 0 ? (
-        <View style={styles.deliveries}>
-          <ScrollView showsHorizontalScrollIndicator={false}>
-            {/* item */}
-            {deliveries.map((delivery) => (
-              <View key={delivery.id} style={styles.delivery}>
-                {/* statusBar */}
-                <View style={styles.statusBar}>
-                  {Array.from(Array(3)).map((item, index) => (
-                    <View
-                      key={index}
-                      style={[
-                        styles.statusItem,
-                        { backgroundColor: index <= delivery.status ? "#FBDF00" : "#E0E0E0" },
-                      ]}
-                    ></View>
-                  ))}
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          style={styles.deliveries}
+          data={deliveries}
+          keyExtractor={(delivery) => String(delivery.id)}
+          renderItem={({ item: delivery }) => (
+            <View key={delivery.id} style={styles.delivery}>
+              {/* statusBar */}
+              <View style={styles.statusBar}>
+                {Array.from(Array(3)).map((item, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.statusItem,
+                      { backgroundColor: index <= delivery.status ? "#FBDF00" : "#E0E0E0" },
+                    ]}
+                  ></View>
+                ))}
+              </View>
+              {/* header */}
+              <View style={styles.itemHeader}>
+                <Text style={styles.statusLabel}>{dictionary[delivery.status].status}</Text>
+                <View style={styles.itemTimeStart}>
+                  <Image source={require("../../assets/deliveries/clock.png")} />
+                  <Text style={styles.timeWindow}>
+                    {delivery.timeStart}:00 - {delivery.timeStart + 2}
+                  </Text>
                 </View>
-                {/* header */}
-                <View style={styles.itemHeader}>
-                  <Text style={styles.statusLabel}>{dictionary[delivery.status].status}</Text>
-                  <View style={styles.itemTimeStart}>
-                    <Image source={require("../../assets/deliveries/clock.png")} />
-                    <Text style={styles.statusLabel}>
-                      {delivery.timeStart}:00 - {delivery.timeStart + 2}
+              </View>
+              {/* body */}
+              <Text style={styles.timeRemaining}>{delivery.status > 0 && "Tempo restante"}</Text>
+              <Text style={styles.price}>R$ {delivery.price}</Text>
+              <Text style={styles.size}>{delivery.size}</Text>
+              <Text style={styles.addressLabel}>{dictionary[delivery.status].addressLabel}</Text>
+              <Text style={styles.pickupName}>{delivery.pickupName}</Text>
+              <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
+              {/* footer */}
+              <View style={styles.itemFooter}>
+                <View style={styles.detailsBox}>
+                  <Image source={require("../../assets/deliveries/route.png")} />
+
+                  <View style={styles.details}>
+                    <Text style={styles.detailsLabel}>Tempo e distância estimada</Text>
+                    <Text style={styles.detailsText}>
+                      {delivery.duration}min / {delivery.distance}km
                     </Text>
                   </View>
                 </View>
-                {/* body */}
-                <Text style={styles.timeRemaining}>{delivery.status > 0 && "Tempo restante"}</Text>
-                <Text style={styles.price}>R$ {delivery.price}</Text>
-                <Text style={styles.size}>{delivery.size}</Text>
-                <Text style={styles.addressLabel}>{dictionary[delivery.status].addressLabel}</Text>
-                <Text style={styles.pickupName}>{delivery.pickupName}</Text>
-                <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
-                {/* footer */}
-                <View style={styles.itemFooter}>
-                  <View style={styles.detailsBox}>
-                    <Image source={require("../../assets/deliveries/route.png")} />
 
-                    <View style={styles.details}>
-                      <Text style={styles.detailsLabel}>Tempo e distância estimada</Text>
-                      <Text style={styles.detailsText}>
-                        {delivery.duration}min / {delivery.distance}km
-                      </Text>
-                    </View>
-                  </View>
-
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Continuar</Text>
-                  </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={styles.button} onPress={() => {}}>
+                  <Text style={styles.buttonText}>Continuar</Text>
+                </TouchableOpacity>
               </View>
-            ))}
-          </ScrollView>
-        </View>
+            </View>
+          )}
+        />
       ) : (
         <View style={styles.emptyDeliveries}>
           <Image source={require("../../assets/deliveries/empty.png")} />

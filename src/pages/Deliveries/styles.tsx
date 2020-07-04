@@ -1,4 +1,3 @@
-import Constants from "expo-constants";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -33,8 +32,10 @@ export default StyleSheet.create({
 
   header: {
     width: 360,
-    height: 140,
+    height: 144,
     backgroundColor: "#431E93",
+    paddingLeft: 12,
+    paddingRight: 12,
 
     flexDirection: "row",
     alignItems: "center",
@@ -43,7 +44,6 @@ export default StyleSheet.create({
 
   headerText: {
     marginTop: -4,
-    marginLeft: 12,
     // fontFamily: "Source Sans Pro",
     // fontStyle: "normal",
     fontWeight: "bold",
@@ -53,18 +53,11 @@ export default StyleSheet.create({
     color: "#FFFFFF",
   },
 
-  headerImage: {
-    marginRight: 12,
-  },
-
   // --------------------------------------Deliveries--------------------------------------
 
   deliveries: {
     marginTop: -45,
     marginBottom: 0,
-
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
 
   delivery: {
@@ -106,9 +99,13 @@ export default StyleSheet.create({
 
   // -----------------------header---------------------------
 
+  itemTimeStart: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
   statusLabel: {
-    // marginleft: 14,
-    // marginTop: 122,
     // fontFamily: "Source Sans Pro",
     // fontStyle: "normal",
     fontWeight: "600",
@@ -118,10 +115,16 @@ export default StyleSheet.create({
     color: "#333333",
   },
 
-  itemTimeStart: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
+  timeWindow: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    marginLeft: 6,
+    fontWeight: "normal",
+    fontSize: 24,
+    lineHeight: 24,
+    textAlign: "right",
+    letterSpacing: -0.165,
+    color: "#4F4F4F",
   },
 
   // -----------------------body---------------------------
