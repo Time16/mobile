@@ -15,6 +15,18 @@ $ npm install
 
 ## Development
 
++ In [config.ts](./src/config/config.ts) put your [google maps api key](https://developers.google.com/maps/documentation/javascript/get-api-key) in *GOOGLE_MAPS_APIKEY* and a location of a store in your neighborhood in *NEIGHBOR_LOCATION*, for example:
+
+```
+{
+  GOOGLE_MAPS_APIKEY: '1234',
+  NEIGHBOR_LOCATION: {
+    latitude: 37.771707,
+    longitude: -122.4053769
+  }
+}
+```
+
 + Run
 
 ```

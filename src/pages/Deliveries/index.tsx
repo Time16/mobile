@@ -1,8 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
+import Config from "../../config/config";
+
+interface Location {
+  latitude: number;
+  longitude: number;
+}
 
 interface Delivery {
   id: number;
@@ -11,6 +17,7 @@ interface Delivery {
   size: String;
   pickupName: String;
   pickUpAdress: String;
+  pickUpLocation: Location;
   duration: number;
   distance: number;
   timeStart: number;
@@ -20,7 +27,6 @@ export default function Home() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
 
   const navigation = useNavigation();
-  const scrollView = useRef();
   const dictionary = [
     { status: "Pendente", addressLabel: "Buscar em" },
     { status: "Buscando", addressLabel: "Buscar em" },
@@ -37,6 +43,7 @@ export default function Home() {
         size: "Grande",
         pickupName: "Padaria Alem do Pão",
         pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
         duration: 20,
         distance: 3,
         timeStart: 12,
@@ -48,6 +55,7 @@ export default function Home() {
         size: "Pequeno",
         pickupName: "Padaria Alem do Pão",
         pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
         duration: 20,
         distance: 3,
         timeStart: 12,
@@ -59,6 +67,7 @@ export default function Home() {
         size: "Grande",
         pickupName: "Padaria Alem do Pão",
         pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
         duration: 20,
         distance: 3,
         timeStart: 12,
@@ -123,7 +132,10 @@ export default function Home() {
                   </View>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => navigation.navigate("DeliveryFlow", { delivery: delivery })}
+                >
                   <Text style={styles.buttonText}>Continuar</Text>
                 </TouchableOpacity>
               </View>
