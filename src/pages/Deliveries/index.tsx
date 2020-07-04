@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
+import Config from "../../config/config";
 
 interface Delivery {
   id: number;
@@ -119,7 +120,19 @@ export default function Home() {
                     </View>
                   </View>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => navigation.navigate('OrderDetail', {item: {
+                      id: '1',
+                      store: 'Padaria alem do Pao',
+                      address: 'R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340',
+                      location: Config.NEIGHBOR_LOCATION,
+                      schedulingTime: {
+                        initial: 12,
+                        final: 14
+                      }
+                    }})
+                  }>
                     <Text style={styles.buttonText}>Continuar</Text>
                   </TouchableOpacity>
                 </View>
