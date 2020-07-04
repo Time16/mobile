@@ -9,10 +9,33 @@ export default StyleSheet.create({
     justifyContent: "flex-start",
   },
 
+  button: {
+    width: 100,
+    height: 40,
+    backgroundColor: "#431E93",
+    // boxShadow: 0 1 1 rgba(136, 104, 11, 0.27),
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  buttonText: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 14,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#FFFFFF",
+  },
+
+  // --------------------------------------header--------------------------------------
+
   header: {
     width: 360,
     height: 140,
     backgroundColor: "#431E93",
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -34,27 +57,34 @@ export default StyleSheet.create({
     marginRight: 12,
   },
 
+  // --------------------------------------Deliveries--------------------------------------
+
   deliveries: {
     marginTop: -45,
+    marginBottom: 0,
+
     justifyContent: "flex-start",
     alignItems: "center",
-
-    marginBottom: 0,
   },
 
   delivery: {
     backgroundColor: "#fff",
     marginBottom: 10,
     borderRadius: 10,
+    paddingLeft: 9,
+    paddingRight: 9,
     width: 350,
     height: 255,
 
-    // flexDirection: "column",
-    // alignItems: "center",
-    // justifyContent: "flex-start",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 
+  // -----------------------statusBar---------------------------
+
   statusBar: {
+    width: "100%",
     marginTop: 6,
     flexDirection: "row",
     alignItems: "center",
@@ -66,14 +96,15 @@ export default StyleSheet.create({
     height: 10,
   },
 
-  itemRow1: {
+  itemHeader: {
+    width: "100%",
     marginTop: 11,
-    marginLeft: 9,
-    marginRight: 9,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
+
+  // -----------------------header---------------------------
 
   statusLabel: {
     // marginleft: 14,
@@ -93,9 +124,122 @@ export default StyleSheet.create({
     justifyContent: "space-evenly",
   },
 
+  // -----------------------body---------------------------
+
   timeRemaining: {
-    marginLeft: 242,
+    marginTop: 3,
+    alignSelf: "flex-end",
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 14,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
   },
+
+  price: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    alignSelf: "flex-start",
+    fontWeight: "normal",
+    fontSize: 18,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
+  },
+
+  size: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    fontWeight: "normal",
+    alignSelf: "flex-start",
+    fontSize: 14,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
+    marginBottom: 12,
+  },
+
+  addressLabel: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    alignSelf: "flex-start",
+    fontWeight: "normal",
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#828282",
+    fontSize: 12,
+  },
+
+  pickupName: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    alignSelf: "flex-start",
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#828282",
+    fontSize: 13,
+    fontWeight: "bold",
+    marginBottom: 1,
+  },
+
+  pickupAdress: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    alignSelf: "flex-start",
+    fontWeight: "normal",
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
+    fontSize: 13,
+    marginBottom: 12,
+  },
+
+  // -----------------------footer---------------------------
+
+  itemFooter: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  detailsBox: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  details: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginLeft: 8,
+  },
+
+  detailsLabel: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    marginBottom: 4,
+    fontWeight: "normal",
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#828282",
+    fontSize: 12,
+  },
+
+  detailsText: {
+    // fontFamily: "Source Sans Pro",
+    // fontStyle: "normal",
+    fontWeight: "normal",
+    lineHeight: 24,
+    letterSpacing: -0.165,
+    color: "#4F4F4F",
+    fontSize: 24,
+  },
+
+  // --------------------------------------emptyDeliveries--------------------------------------
 
   emptyDeliveries: {
     alignItems: "center",
@@ -113,26 +257,6 @@ export default StyleSheet.create({
     lineHeight: 18,
     letterSpacing: -0.165,
     textAlign: "center",
-  },
-
-  emptyDeliveriesButton: {
-    width: 100,
-    height: 40,
-    backgroundColor: "#431E93",
-    // boxShadow: 0 1 1 rgba(136, 104, 11, 0.27),
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  emptyDeliveriesButtonText: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: 14,
-    lineHeight: 18,
-    letterSpacing: -0.165,
-    color: "#FFFFFF",
   },
 
   menu: {},
