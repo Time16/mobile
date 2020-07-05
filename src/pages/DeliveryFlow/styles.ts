@@ -56,7 +56,7 @@ export default StyleSheet.create({
   // --------------------------------------header--------------------------------------
 
   header: {
-    width: 360,
+    width: '100%',
     height: 140,
     backgroundColor: "#431E93",
     flexDirection: "row",

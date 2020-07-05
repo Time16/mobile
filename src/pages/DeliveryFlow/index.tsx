@@ -112,10 +112,7 @@ export default function DeliveryFlow() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Suas entregas</Text>
-        <Image style={styles.headerImage} source={require("../../assets/options.png")} />
-      </View>
+      <View style={styles.header} />
 
       <View key={delivery.id} style={styles.delivery}>
         {/* statusBar */}
