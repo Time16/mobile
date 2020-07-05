@@ -261,6 +261,48 @@ export default StyleSheet.create({
     textAlign: "center",
   },
 
-  menu: {},
-  menuItem: {},
+  menu: {
+    width: 360,
+    height: 74,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+
+  menuItemBox: {
+    width: 50,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  menuItem: {
+    width: 120,
+    height: 74,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  menuText: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 12,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#4F4F4F",
+  },
+
+  menuTextSelected: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 12,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#431E93",
+  },
 });

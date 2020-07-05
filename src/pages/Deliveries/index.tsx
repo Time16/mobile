@@ -162,14 +162,23 @@ export default function Home() {
       )}
 
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("History")}>
-          <Text style={styles.buttonText}>Histórico</Text>
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate("History")}>
+          <View style={styles.menuItemBox}>
+            <Image source={require(`../../assets/deliveries/history.png`)} />
+          </View>
+          <Text style={styles.menuText}>Histórico</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Delivery")}>
-          <Text style={styles.buttonText}>Entregas</Text>
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate("Deliveries")}>
+          <View style={styles.menuItemBox}>
+            <Image source={require(`../../assets/deliveries/deliveries-selected.png`)} />
+          </View>
+          <Text style={styles.menuTextSelected}>Entregas</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}>
-          <Text style={styles.buttonText}>Procurar</Text>
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate("Search")}>
+          <View style={styles.menuItemBox}>
+            <Image source={require(`../../assets/deliveries/search.png`)} />
+          </View>
+          <Text style={styles.menuText}>Procurar</Text>
         </TouchableOpacity>
       </View>
     </View>
