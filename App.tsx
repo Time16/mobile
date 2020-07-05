@@ -21,6 +21,8 @@ export default function App() {
     return <AppLoading />;
   }
 
+  console.disableYellowBox = true;
+
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />

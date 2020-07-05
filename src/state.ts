@@ -4,21 +4,21 @@ const deliveries = [
     accepted: false,
     finished: false,
     status: 0,
-    price: 9,
+    price: 7,
     size: "Grande",
-    pickupName: "Mercado Gomes",
-    pickupAddress: "R. Alberto Cortez - Pestana, Osasco - SP, 02675-031",
+    pickupName: "Vicarlú Mercado Açougue e Hortifruti",
+    pickupAddress: "R. Acácia, 608 - Jardim das Flores, Osasco - SP, 06120-120",
     pickupLocation: {
-      latitude: -23.5331541,
-      longitude: -46.7946788
+      latitude: -23.540701,
+      longitude: -46.7955556
     },
-    deliveryName: "João Souza",
-    deliveryAddress: "R. Papoula, 559-425 - Jardim das Flores, Osasco - SP, 06110-210",
+    deliveryName: "Maria Aparecida Oliveira",
+    deliveryAddress: "R. Miosótis, 399-249 - Jardim das Flores, Osasco - SP, 06110-230",
     deliveryLocation: {
-      latitude: -23.533445,
-      longitude: -46.795257
+      latitude: -23.534591,
+      longitude: -46.792328
     },
-    timeStart: 12
+    timeStart: 10
   },
   {
     id: 1,
@@ -67,19 +67,19 @@ const deliveries = [
     accepted: false,
     finished: false,
     status: 0,
-    price: 7,
+    price: 9,
     size: "Grande",
-    pickupName: "Vicarlú Mercado Açougue e Hortifruti",
-    pickupAddress: "R. Acácia, 608 - Jardim das Flores, Osasco - SP, 06120-120",
+    pickupName: "Mercado Gomes",
+    pickupAddress: "R. Alberto Cortez - Pestana, Osasco - SP, 02675-031",
     pickupLocation: {
-      latitude: -23.540701,
-      longitude: -46.7955556
+      latitude: -23.5331541,
+      longitude: -46.7946788
     },
-    deliveryName: "Maria Aparecida Oliveira",
-    deliveryAddress: "R. Miosótis, 399-249 - Jardim das Flores, Osasco - SP, 06110-230",
+    deliveryName: "João Souza",
+    deliveryAddress: "R. Papoula, 559-425 - Jardim das Flores, Osasco - SP, 06110-210",
     deliveryLocation: {
-      latitude: -23.534591,
-      longitude: -46.792328
+      latitude: -23.533445,
+      longitude: -46.795257
     },
     timeStart: 20
   }

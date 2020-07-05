@@ -63,7 +63,7 @@ export default function History() {
 
               <View style={styles.detailsHistory}>
                 <View style={styles.detailsDeliveries}>
-                  <Text style={styles.deliveriesNumber}>0</Text>
+                  <Text style={styles.deliveriesNumber}>{deliveries.length}</Text>
                   <Text style={styles.deliveriesTitle}>entregas</Text>
                 </View>
 
