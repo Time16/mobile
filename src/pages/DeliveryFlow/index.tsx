@@ -1,30 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert, Modal, TouchableHighlight } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as Location from 'expo-location';
-
-import styles from "./styles";
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+
+import styles from "./styles";
 import Config from "../../config/config";
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
+import { Delivery } from "../../types";
 
 interface Params {
   delivery: Delivery;
@@ -91,13 +74,13 @@ export default function DeliveryFlow() {
       Linking.openURL(
         `http://maps.apple.com/maps/dir/`+
         `${initialPosition.latitude},+${initialPosition.longitude}/`+
-        `'${delivery.pickUpLocation.latitude},${delivery.pickUpLocation.longitude}'`
+        `'${delivery.pickupLocation.latitude},${delivery.pickupLocation.longitude}'`
       );
     } else if (Platform.OS === 'android') {
       Linking.openURL(
         `https://www.google.com/maps/dir/`+
         `${initialPosition.latitude},+${initialPosition.longitude}/`+
-        `'${delivery.pickUpLocation.latitude},${delivery.pickUpLocation.longitude}'`
+        `'${delivery.pickupLocation.latitude},${delivery.pickupLocation.longitude}'`
       );
     }
   }
@@ -143,8 +126,18 @@ export default function DeliveryFlow() {
         <Text style={styles.price}>R$ {delivery.price}</Text>
         <Text style={styles.size}>{delivery.size}</Text>
         <Text style={styles.addressLabel}>{dictionary[delivery.status].addressLabel}</Text>
-        <Text style={styles.pickupName}>{delivery.pickupName}</Text>
-        <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
+        {delivery.status === 1 && (
+          <>
+            <Text style={styles.pickupName}>{delivery.pickupName}</Text>
+            <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>
+          </>
+        )}
+        {delivery.status === 2 && (
+          <>
+            <Text style={styles.pickupName}>{delivery.deliveryName}</Text>
+            <Text style={styles.pickupAdress}>{delivery.deliveryAddress}</Text>
+          </>
+        )}
         <Text style={styles.detailsLabel}>{dictionary[delivery.status].distanceLabel}</Text>
         <Text style={styles.detailsText}>{duration} min / {distance} km</Text>
 
@@ -166,7 +159,7 @@ export default function DeliveryFlow() {
           >
             <MapViewDirections
               origin={initialPosition}
-              destination={delivery.pickUpLocation}
+              destination={delivery.status === 1 ? delivery.pickupLocation : delivery.deliveryLocation}
               apikey={Config.GOOGLE_MAPS_APIKEY}
               region='BR'
               strokeWidth={5}
@@ -186,7 +179,7 @@ export default function DeliveryFlow() {
             <Marker
               key={String(2)}
               onPress={() => {}}
-              coordinate={delivery.pickUpLocation}
+              coordinate={delivery.pickupLocation}
               title={delivery.pickupName.toString()}
               identifier={'mk2'}
             />

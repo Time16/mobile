@@ -78,7 +78,9 @@ export default function DeliveryConfirmation() {
             <TouchableHighlight
               style={{ ...styles.button }}
               onPress={() => {
-                delivery.status = 2;
+                if (delivery.status < 2) {
+                  delivery.status++;
+                }
                 navigation.navigate('Deliveries');
               }}
             >
