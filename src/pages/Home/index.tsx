@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AsyncStorage from "@react-native-community/async-storage";
+// import AsyncStorage from "@react-native-community/async-storage";
 import {
   View,
   Text,
@@ -27,7 +27,7 @@ export default function Home() {
     //   password,
     // });
 
-    await AsyncStorage.setItem("user", email);
+    // await AsyncStorage.setItem("user", email);
 
     navigation.navigate("Deliveries");
   }
