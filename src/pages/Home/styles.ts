@@ -31,8 +31,8 @@ export default StyleSheet.create({
   },
 
   title: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     marginTop: 30,
     marginBottom: 17,
     fontWeight: "bold",
@@ -45,8 +45,8 @@ export default StyleSheet.create({
   emailLabel: {
     marginTop: 20,
     marginBottom: 5,
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
     lineHeight: 14,
@@ -67,8 +67,8 @@ export default StyleSheet.create({
 
   passwordLabel: {
     marginBottom: 5,
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
     lineHeight: 14,
@@ -117,8 +117,8 @@ export default StyleSheet.create({
 
   buttonText: {
     flex: 1,
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 14,
     lineHeight: 18,
@@ -126,12 +126,11 @@ export default StyleSheet.create({
     textAlign: "center",
     letterSpacing: -0.165,
     color: "#FFFFFF",
-    // fontFamily: "Roboto_500Medium",
   },
 
   signUp: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 14,
     lineHeight: 18,

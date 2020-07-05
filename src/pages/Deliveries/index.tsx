@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import api from "../../services/api";
 
 import styles from "./styles";
 import Config from "../../config/config";
@@ -146,16 +147,27 @@ export default function Home() {
         <View style={styles.emptyDeliveries}>
           <Image source={require("../../assets/deliveries/empty.png")} />
           <Text style={styles.emptyDeliveriesText}>Voce nao tem nenhum pedido pra entregar</Text>
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("DeliveryFlow");
+            }}
+          >
             <Text style={styles.buttonText}>Procurar</Text>
           </TouchableOpacity>
         </View>
       )}
 
       <View style={styles.menu}>
-        <View>
-          <TouchableOpacity style={styles.menuItem} onPress={() => {}}></TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("History")}>
+          <Text style={styles.buttonText}>Histórico</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Delivery")}>
+          <Text style={styles.buttonText}>Entregas</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}>
+          <Text style={styles.buttonText}>Procurar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
