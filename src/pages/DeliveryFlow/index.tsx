@@ -36,6 +36,7 @@ export default function DeliveryFlow() {
     {
       status: "Pendente",
       addressLabel: "Buscar em",
+      distanceLabel: "Tempo até o estabelecimento",
       title: "Busque o pedido",
       buttonMessage: "Cheguei no estabelecimento",
       navigation: "PickupConfirmation"
@@ -43,6 +44,7 @@ export default function DeliveryFlow() {
     {
       status: "Buscando",
       addressLabel: "Buscar em",
+      distanceLabel: "Tempo até o estabelecimento",
       title: "Busque o pedido",
       buttonMessage: "Cheguei no estabelecimento",
       navigation: "PickupConfirmation"
@@ -50,6 +52,7 @@ export default function DeliveryFlow() {
     {
       status: "Entregando",
       addressLabel: "Entregar em",
+      distanceLabel: "Tempo até o destino",
       title: "Entregue o pedido",
       buttonMessage: "Entreguei o pedido",
       navigation: "DeliveryConfirmation"
@@ -145,7 +148,7 @@ export default function DeliveryFlow() {
         <Text style={styles.addressLabel}>{dictionary[delivery.status].addressLabel}</Text>
         <Text style={styles.pickupName}>{delivery.pickupName}</Text>
         <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
-        <Text style={styles.detailsLabel}>Tempo até o estabelecimento</Text>
+        <Text style={styles.detailsLabel}>{dictionary[delivery.status].distanceLabel}</Text>
         <Text style={styles.detailsText}>{duration} min / {distance} km</Text>
 
         {/* map */}
