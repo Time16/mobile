@@ -26,6 +26,13 @@ export default function History() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
 
   const navigation = useNavigation();
+  const levelDictionary = [
+    { color: "#FBDF00", current: true },
+    { color: "#56CCF2", current: false },
+    { color: "#2F80ED", current: false },
+    { color: "#6FCF97", current: false },
+    { color: "#219653", current: false },
+  ];
 
   useEffect(() => {
     // get deliveries array from api
@@ -86,13 +93,19 @@ export default function History() {
         {/* beneficts */}
         <View style={styles.beneficts}>
           <View style={styles.benefictsBar}>
-            {["#FBDF00", "#56CCF2", "#2F80ED", "#6FCF97", "#219653"].map((level) => (
-              <View style={[styles.benefictsBarItem, { backgroundColor: level }]}></View>
+            {levelDictionary.map((level) => (
+              <View
+                key={level.color}
+                style={[
+                  styles.benefictsBarItem,
+                  { backgroundColor: level.color, opacity: level.current ? 1 : 0.3 },
+                ]}
+              ></View>
             ))}
           </View>
 
           <View style={styles.benefictsDetails}>
-            <Image source={require("../../assets/history/diamond.png")} />
+            <Image style={styles.diamond} source={require("../../assets/history/diamond.png")} />
 
             <View style={styles.detailsData}>
               <Text style={styles.detailsTitle}>Agente Iniciante</Text>
@@ -104,11 +117,11 @@ export default function History() {
                 </View>
 
                 <View style={styles.detailsLevel}>
-                  <Image source={require("../../assets/history/star.png")} />
-                  <View style={styles.levelData}>
+                  <View style={styles.levelScore}>
+                    <Image source={require("../../assets/history/star.png")} />
                     <Text style={styles.levelNumber}>0</Text>
-                    <Text style={styles.levelTitle}>noviço</Text>
                   </View>
+                  <Text style={styles.levelTitle}>noviço</Text>
                 </View>
               </View>
             </View>

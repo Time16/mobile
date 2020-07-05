@@ -82,6 +82,20 @@ export default StyleSheet.create({
     letterSpacing: -0.165,
     color: "#FFFFFF",
   },
+
+  headerText: {
+    marginTop: 9,
+    marginLeft: 18,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 18,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
+    alignSelf: "flex-start",
+  },
+
   //   -----------------------beneficts-----------------------
   beneficts: {
     width: 330,
@@ -104,7 +118,6 @@ export default StyleSheet.create({
   benefictsBarItem: {
     width: 62,
     height: 9,
-    opacity: 0.3,
   },
 
   benefictsDetails: {
@@ -113,12 +126,26 @@ export default StyleSheet.create({
     justifyContent: "space-between",
   },
 
+  diamond: {
+    marginLeft: 5,
+  },
+
   detailsData: {
     alignItems: "center",
     justifyContent: "space-between",
   },
 
-  detailsTitle: {},
+  detailsTitle: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 18,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#E9D430",
+    marginBottom: 8,
+  },
 
   detailsHistory: {
     flexDirection: "row",
@@ -127,44 +154,84 @@ export default StyleSheet.create({
   },
 
   detailsDeliveries: {
+    paddingRight: 9,
     alignItems: "center",
     justifyContent: "center",
+    borderRightWidth: 1,
+    borderRightColor: "#BDBDBD",
   },
 
-  deliveriesNumber: {},
+  deliveriesNumber: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 18,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#333333",
+    marginBottom: 4,
+  },
 
-  deliveriesTitle: {},
+  deliveriesTitle: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 13,
+    lineHeight: 13,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#828282",
+  },
 
   detailsLevel: {
+    paddingLeft: 9,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+
+  levelScore: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 4,
   },
 
-  levelData: {
-    alignItems: "center",
-    justifyContent: "center",
+  levelNumber: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 18,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#333333",
+    marginLeft: 5,
+    marginBottom: -4,
   },
 
-  levelNumber: {},
-
-  levelTitle: {},
+  levelTitle: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 13,
+    lineHeight: 13,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#828282",
+    marginTop: 4,
+  },
 
   benefictsButton: {
     alignSelf: "flex-end",
-  },
-
-  headerText: {
-    marginTop: 9,
-    marginLeft: 18,
+    marginRight: 3,
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 18,
-    lineHeight: 18,
+    fontSize: 14,
+    lineHeight: 14,
     letterSpacing: -0.165,
     color: "#431E93",
-    alignSelf: "flex-start",
   },
 
   // --------------------------------------Deliveries--------------------------------------
