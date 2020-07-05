@@ -43,7 +43,6 @@ export default function Home() {
         </View>
         <View style={styles.body}>
           <Text style={styles.title}>Faça seu login</Text>
-          <Image source={require("../../assets/home/image-login.png")} />
 
           <Text style={styles.emailLabel}>E-mail</Text>
           <TextInput
@@ -74,6 +73,7 @@ export default function Home() {
           <RectButton style={styles.button} onPress={HandleLogin}>
             <Text style={styles.buttonText}>Login</Text>
           </RectButton>
+          <Image source={require("../../assets/home/image-login.png")} />
 
           <Text style={styles.signUp}>Quero ser um agente do Mercado Aqui</Text>
         </View>

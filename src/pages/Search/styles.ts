@@ -66,7 +66,7 @@ export default StyleSheet.create({
     paddingLeft: 9,
     paddingRight: 9,
     width: 350,
-    height: 255,
+    height: 213,
 
     flexDirection: "column",
     alignItems: "center",
@@ -145,8 +145,8 @@ export default StyleSheet.create({
     fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
-    fontSize: 18,
-    lineHeight: 18,
+    fontSize: 30,
+    lineHeight: 30,
     letterSpacing: -0.165,
     color: "#431E93",
   },
@@ -160,7 +160,7 @@ export default StyleSheet.create({
     lineHeight: 18,
     letterSpacing: -0.165,
     color: "#431E93",
-    marginBottom: 12,
+    marginBottom: -5,
   },
 
   addressLabel: {

@@ -129,6 +129,7 @@ export default StyleSheet.create({
   },
 
   signUp: {
+    marginTop: 20,
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
