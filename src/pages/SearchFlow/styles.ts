@@ -2,13 +2,32 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    height: 450,
     backgroundColor: "#E5E5E5",
     alignItems: "center",
     justifyContent: "flex-start",
   },
 
-  button: {
+  cancelButton: {
+    width: 100,
+    height: 40,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  cancelButtonText: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 14,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
+  },
+
+  confirmButton: {
     width: 100,
     height: 40,
     backgroundColor: "#431E93",
@@ -17,7 +36,7 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
 
-  buttonText: {
+  confirmButtonText: {
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
@@ -27,15 +46,19 @@ export default StyleSheet.create({
     color: "#FFFFFF",
   },
 
+  buttonContainer: {
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+
   // --------------------------------------header--------------------------------------
 
   header: {
     width: 360,
-    height: 144,
+    height: 140,
     backgroundColor: "#431E93",
-    paddingLeft: 12,
-    paddingRight: 12,
-
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -43,8 +66,7 @@ export default StyleSheet.create({
 
   headerText: {
     marginTop: -4,
-    fontFamily: "Roboto",
-    fontStyle: "normal",
+    marginLeft: 12,
     fontWeight: "bold",
     fontSize: 24,
     lineHeight: 30,
@@ -52,11 +74,18 @@ export default StyleSheet.create({
     color: "#FFFFFF",
   },
 
+  headerImage: {
+    marginRight: 12,
+  },
+
   // --------------------------------------Deliveries--------------------------------------
 
   deliveries: {
     marginTop: -45,
     marginBottom: 0,
+
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 
   delivery: {
@@ -65,22 +94,25 @@ export default StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 9,
     paddingRight: 9,
-    width: 350,
-    height: 255,
-
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
+    position: "absolute",
+    marginTop: 53,
+    alignSelf: "center",
+    width: 350,
+    height: "90%",
   },
 
   // -----------------------statusBar---------------------------
 
-  statusBar: {
+  close: {
     width: "100%",
-    marginTop: 6,
+    marginTop: 15,
+    marginRight: 15,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-end",
   },
 
   statusItem: {
@@ -98,32 +130,42 @@ export default StyleSheet.create({
 
   // -----------------------header---------------------------
 
-  itemTimeStart: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+  priceLabel: {
+    fontWeight: "normal",
+    fontSize: 12,
+    lineHeight: 12,
+    letterSpacing: -0.165,
+    color: "#828282",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
   },
 
   statusLabel: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    fontWeight: "600",
-    fontSize: 18,
-    lineHeight: 18,
+    fontWeight: "normal",
+    fontSize: 12,
+    lineHeight: 12,
     letterSpacing: -0.165,
-    color: "#333333",
+    color: "#828282",
+    marginLeft: 9,
   },
 
-  timeWindow: {
+  timeStart: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    marginLeft: 6,
     fontWeight: "normal",
     fontSize: 24,
     lineHeight: 24,
-    textAlign: "right",
     letterSpacing: -0.165,
     color: "#4F4F4F",
+    marginLeft: 9,
+  },
+
+  itemTimeStart: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
 
   // -----------------------body---------------------------
@@ -140,13 +182,22 @@ export default StyleSheet.create({
     color: "#431E93",
   },
 
+  secondHeader: {
+    width: "100%",
+    marginTop: 7,
+    marginBottom: 29,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
   price: {
     fontFamily: "Roboto",
     fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
-    fontSize: 18,
-    lineHeight: 18,
+    fontSize: 30,
+    lineHeight: 30,
     letterSpacing: -0.165,
     color: "#431E93",
   },
@@ -155,12 +206,22 @@ export default StyleSheet.create({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
-    alignSelf: "flex-start",
-    fontSize: 14,
+    fontSize: 18,
     lineHeight: 18,
     letterSpacing: -0.165,
-    color: "#431E93",
-    marginBottom: 12,
+    color: "#4F4F4F",
+    marginLeft: 9,
+    marginRight: 3,
+  },
+
+  sizeDetail: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 12,
+    lineHeight: 12,
+    letterSpacing: -0.165,
+    color: "#4F4F4F",
   },
 
   addressLabel: {
@@ -198,28 +259,6 @@ export default StyleSheet.create({
     marginBottom: 12,
   },
 
-  // -----------------------footer---------------------------
-
-  itemFooter: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  detailsBox: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  details: {
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginLeft: 8,
-  },
-
   detailsLabel: {
     fontFamily: "Roboto",
     fontStyle: "normal",
@@ -229,6 +268,7 @@ export default StyleSheet.create({
     letterSpacing: -0.165,
     color: "#828282",
     fontSize: 12,
+    alignSelf: "flex-start",
   },
 
   detailsText: {
@@ -239,74 +279,33 @@ export default StyleSheet.create({
     letterSpacing: -0.165,
     color: "#4F4F4F",
     fontSize: 24,
+    alignSelf: "flex-start",
   },
 
-  // --------------------------------------emptyDeliveries--------------------------------------
-
-  emptyDeliveries: {
-    alignItems: "center",
-    justifyContent: "center",
+  pickupSizeLabel: {
+    alignSelf: "flex-start",
   },
 
-  emptyDeliveriesText: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    width: 183,
-    marginTop: 27,
-    marginBottom: 37,
-    fontWeight: "bold",
-    fontSize: 14,
-    lineHeight: 18,
-    letterSpacing: -0.165,
-    textAlign: "center",
-  },
-
-  // --------------------------------------menu--------------------------------------
-
-  menu: {
-    width: 360,
-    height: 74,
+  pickupSize: {
+    width: "100%",
     flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    borderColor: "#E0E0E0",
-    borderWidth: 1,
+    marginBottom: 28,
   },
 
-  menuItemBox: {
-    width: 50,
-    height: 50,
+  // -----------------------footer---------------------------
+  footer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: 24,
+  },
+
+  pickupDetails: {
+    marginBottom: 20,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center",
-    justifyContent: "center",
-  },
-
-  menuItem: {
-    width: 120,
-    height: 74,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  menuText: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 12,
-    lineHeight: 18,
-    textAlign: "center",
-    letterSpacing: -0.165,
-    color: "#4F4F4F",
-  },
-
-  menuTextSelected: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 12,
-    lineHeight: 18,
-    textAlign: "center",
-    letterSpacing: -0.165,
-    color: "#431E93",
   },
 });

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 export default StyleSheet.create({
   container: {
@@ -31,31 +32,212 @@ export default StyleSheet.create({
 
   header: {
     width: 360,
-    height: 144,
+    height: 235,
     backgroundColor: "#431E93",
-    paddingLeft: 12,
-    paddingRight: 12,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10 + Constants.statusBarHeight,
 
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+
+  profile: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    marginBottom: 22,
+  },
+
+  profilePicture: {
+    borderColor: "#FFFFFF",
+    borderWidth: 1,
+    borderRadius: 100,
+  },
+
+  profileDetails: {
+    marginLeft: -60,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+
+  headerName: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 18,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#FFFFFF",
+  },
+
+  headerEmail: {
+    marginTop: 6,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 13,
+    lineHeight: 13,
+    letterSpacing: -0.165,
+    color: "#FFFFFF",
+  },
+
+  headerText: {
+    marginTop: 9,
+    marginLeft: 18,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 18,
+    lineHeight: 18,
+    letterSpacing: -0.165,
+    color: "#431E93",
+    alignSelf: "flex-start",
+  },
+
+  //   -----------------------beneficts-----------------------
+  beneficts: {
+    width: 330,
+    height: 89,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+
+  benefictsBar: {
+    marginTop: 3,
+    marginBottom: 9,
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+
+  benefictsBarItem: {
+    width: 62,
+    height: 9,
+  },
+
+  benefictsDetails: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
 
-  headerText: {
-    marginTop: -4,
+  diamond: {
+    marginLeft: 5,
+  },
+
+  detailsData: {
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  detailsTitle: {
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 24,
-    lineHeight: 30,
+    fontSize: 18,
+    lineHeight: 18,
+    textAlign: "center",
     letterSpacing: -0.165,
-    color: "#FFFFFF",
+    color: "#E9D430",
+    marginBottom: 8,
+  },
+
+  detailsHistory: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  detailsDeliveries: {
+    paddingRight: 9,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRightWidth: 1,
+    borderRightColor: "#BDBDBD",
+  },
+
+  deliveriesNumber: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 18,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#333333",
+    marginBottom: 4,
+  },
+
+  deliveriesTitle: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 13,
+    lineHeight: 13,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#828282",
+  },
+
+  detailsLevel: {
+    paddingLeft: 9,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+
+  levelScore: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 4,
+  },
+
+  levelNumber: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 18,
+    lineHeight: 18,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#333333",
+    marginLeft: 5,
+    marginBottom: -4,
+  },
+
+  levelTitle: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 13,
+    lineHeight: 13,
+    textAlign: "center",
+    letterSpacing: -0.165,
+    color: "#828282",
+    marginTop: 4,
+  },
+
+  benefictsButton: {
+    alignSelf: "flex-end",
+    marginRight: 3,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 14,
+    lineHeight: 14,
+    letterSpacing: -0.165,
+    color: "#431E93",
   },
 
   // --------------------------------------Deliveries--------------------------------------
 
   deliveries: {
-    marginTop: -45,
+    marginTop: 11,
     marginBottom: 0,
   },
 
@@ -66,7 +248,7 @@ export default StyleSheet.create({
     paddingLeft: 9,
     paddingRight: 9,
     width: 350,
-    height: 255,
+    height: 213,
 
     flexDirection: "column",
     alignItems: "center",
@@ -119,8 +301,8 @@ export default StyleSheet.create({
     fontStyle: "normal",
     marginLeft: 6,
     fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 24,
+    fontSize: 18,
+    lineHeight: 18,
     textAlign: "right",
     letterSpacing: -0.165,
     color: "#4F4F4F",
@@ -160,7 +342,7 @@ export default StyleSheet.create({
     lineHeight: 18,
     letterSpacing: -0.165,
     color: "#431E93",
-    marginBottom: 12,
+    marginBottom: -5,
   },
 
   addressLabel: {
@@ -235,10 +417,10 @@ export default StyleSheet.create({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
-    lineHeight: 24,
+    lineHeight: 13,
     letterSpacing: -0.165,
     color: "#4F4F4F",
-    fontSize: 24,
+    fontSize: 13,
   },
 
   // --------------------------------------emptyDeliveries--------------------------------------
