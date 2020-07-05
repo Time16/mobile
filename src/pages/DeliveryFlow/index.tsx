@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert, Modal, TouchableHighlight } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as Location from 'expo-location';
 
@@ -33,9 +33,27 @@ interface Params {
 export default function DeliveryFlow() {
   const navigation = useNavigation();
   const dictionary = [
-    { status: "Pendente", addressLabel: "Buscar em" },
-    { status: "Buscando", addressLabel: "Buscar em" },
-    { status: "Entregando", addressLabel: "Entregar em" },
+    {
+      status: "Pendente",
+      addressLabel: "Buscar em",
+      title: "Busque o pedido",
+      buttonMessage: "Cheguei no estabelecimento",
+      navigation: "PickupConfirmation"
+    },
+    {
+      status: "Buscando",
+      addressLabel: "Buscar em",
+      title: "Busque o pedido",
+      buttonMessage: "Cheguei no estabelecimento",
+      navigation: "PickupConfirmation"
+    },
+    {
+      status: "Entregando",
+      addressLabel: "Entregar em",
+      title: "Entregue o pedido",
+      buttonMessage: "Entreguei o pedido",
+      navigation: "DeliveryConfirmation"
+    },
   ];
 
   const mapRef = useRef<MapView>(null);
@@ -111,7 +129,8 @@ export default function DeliveryFlow() {
         </View>
         {/* header */}
         <View style={styles.itemHeader}>
-          <Text style={styles.statusLabel}>{dictionary[delivery.status].status}</Text>
+          <Text style={styles.statusLabel}>{dictionary[delivery.status].title}</Text>
+
           <View style={styles.itemTimeStart}>
             <Image source={require("../../assets/deliveries/clock.png")} />
             <Text style={styles.statusLabel}>
@@ -198,9 +217,11 @@ export default function DeliveryFlow() {
         <View style={styles.footer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate(dictionary[delivery.status].navigation, {delivery: delivery})
+            }}
           >
-            <Text style={styles.buttonText}>Cheguei no estabelecimento</Text>
+            <Text style={styles.buttonText}>{dictionary[delivery.status].buttonMessage}</Text>
           </TouchableOpacity>
         </View>
       </View>

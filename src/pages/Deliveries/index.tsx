@@ -131,7 +131,10 @@ export default function Home() {
 
                   <TouchableOpacity
                     style={styles.button}
-                    onPress={() => navigation.navigate('DeliveryFlow', {delivery: delivery})}
+                    onPress={() => {
+                      delivery.status = 1;
+                      navigation.navigate('DeliveryFlow', {delivery: delivery})
+                    }}
                   >
                     <Text style={styles.buttonText}>Continuar</Text>
                   </TouchableOpacity>
