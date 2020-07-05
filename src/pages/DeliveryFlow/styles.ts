@@ -10,47 +10,47 @@ export default StyleSheet.create({
 
   button: {
     borderRadius: 50,
-    backgroundColor: '#431E93',
+    backgroundColor: "#431E93",
     width: 300,
     height: 50,
-    flexDirection: 'row',
-    overflow: 'hidden',
-    alignItems: 'center',
-    textAlign: 'center',
-    justifyContent: 'flex-end',
+    flexDirection: "row",
+    overflow: "hidden",
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "flex-end",
   },
 
   buttonText: {
-    fontStyle: 'normal',
-    fontWeight: 'bold',
+    fontStyle: "normal",
+    fontWeight: "bold",
     fontSize: 14,
     lineHeight: 18,
-    textAlign: 'center',
+    textAlign: "center",
     letterSpacing: -0.165,
-    color: '#FFFFFF',
-    alignSelf: 'center',
+    color: "#FFFFFF",
+    alignSelf: "center",
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 
   buttonContainer: {
-    margin: '10%',
-    width: '90%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    margin: "10%",
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 
   openMapButton: {
-    alignItems: 'center'
+    alignItems: "center",
   },
 
   callClientButton: {
-    alignItems: 'center',
-    marginRight: 20
+    alignItems: "center",
+    marginRight: 20,
   },
 
   helpButton: {
-    alignItems: 'center'
+    alignItems: "center",
   },
 
   // --------------------------------------header--------------------------------------
@@ -97,11 +97,11 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    position: 'absolute',
+    position: "absolute",
     marginTop: 53,
-    alignSelf: 'center',
+    alignSelf: "center",
     width: 350,
-    height: '90%',
+    height: "90%",
   },
 
   // -----------------------statusBar---------------------------
@@ -148,8 +148,8 @@ export default StyleSheet.create({
   timeRemaining: {
     marginTop: 3,
     alignSelf: "flex-end",
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
     lineHeight: 18,
@@ -158,8 +158,8 @@ export default StyleSheet.create({
   },
 
   price: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
     fontSize: 18,
@@ -169,8 +169,8 @@ export default StyleSheet.create({
   },
 
   size: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     alignSelf: "flex-start",
     fontSize: 14,
@@ -181,8 +181,8 @@ export default StyleSheet.create({
   },
 
   addressLabel: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
     lineHeight: 18,
@@ -192,8 +192,8 @@ export default StyleSheet.create({
   },
 
   pickupName: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     lineHeight: 18,
     letterSpacing: -0.165,
@@ -204,8 +204,8 @@ export default StyleSheet.create({
   },
 
   pickupAdress: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
     lineHeight: 18,
@@ -216,8 +216,8 @@ export default StyleSheet.create({
   },
 
   detailsLabel: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     marginBottom: 4,
     fontWeight: "normal",
     lineHeight: 18,
@@ -228,8 +228,8 @@ export default StyleSheet.create({
   },
 
   detailsText: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     lineHeight: 24,
     letterSpacing: -0.165,
@@ -239,23 +239,23 @@ export default StyleSheet.create({
   },
 
   map: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
 
   mapContainer: {
-    width: '90%',
-    height: '30%',
-    alignSelf: 'center',
+    width: "90%",
+    height: "30%",
+    alignSelf: "center",
     borderRadius: 2,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginTop: 16,
   },
 
   // -----------------------footer---------------------------
   footer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 24 
-  }
+    justifyContent: "flex-end",
+    marginBottom: 24,
+  },
 });

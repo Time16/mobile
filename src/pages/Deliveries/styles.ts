@@ -1,4 +1,3 @@
-import Constants from "expo-constants";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -13,15 +12,14 @@ export default StyleSheet.create({
     width: 100,
     height: 40,
     backgroundColor: "#431E93",
-    // boxShadow: 0 1 1 rgba(136, 104, 11, 0.27),
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
   },
 
   buttonText: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 14,
     lineHeight: 18,
@@ -33,8 +31,10 @@ export default StyleSheet.create({
 
   header: {
     width: 360,
-    height: 140,
+    height: 144,
     backgroundColor: "#431E93",
+    paddingLeft: 12,
+    paddingRight: 12,
 
     flexDirection: "row",
     alignItems: "center",
@@ -43,9 +43,8 @@ export default StyleSheet.create({
 
   headerText: {
     marginTop: -4,
-    marginLeft: 12,
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 24,
     lineHeight: 30,
@@ -53,18 +52,11 @@ export default StyleSheet.create({
     color: "#FFFFFF",
   },
 
-  headerImage: {
-    marginRight: 12,
-  },
-
   // --------------------------------------Deliveries--------------------------------------
 
   deliveries: {
     marginTop: -45,
     marginBottom: 0,
-
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
 
   delivery: {
@@ -106,11 +98,15 @@ export default StyleSheet.create({
 
   // -----------------------header---------------------------
 
+  itemTimeStart: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
   statusLabel: {
-    // marginleft: 14,
-    // marginTop: 122,
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "600",
     fontSize: 18,
     lineHeight: 18,
@@ -118,10 +114,16 @@ export default StyleSheet.create({
     color: "#333333",
   },
 
-  itemTimeStart: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
+  timeWindow: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    marginLeft: 6,
+    fontWeight: "normal",
+    fontSize: 24,
+    lineHeight: 24,
+    textAlign: "right",
+    letterSpacing: -0.165,
+    color: "#4F4F4F",
   },
 
   // -----------------------body---------------------------
@@ -129,8 +131,8 @@ export default StyleSheet.create({
   timeRemaining: {
     marginTop: 3,
     alignSelf: "flex-end",
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
     lineHeight: 18,
@@ -139,8 +141,8 @@ export default StyleSheet.create({
   },
 
   price: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
     fontSize: 18,
@@ -150,8 +152,8 @@ export default StyleSheet.create({
   },
 
   size: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     alignSelf: "flex-start",
     fontSize: 14,
@@ -162,8 +164,8 @@ export default StyleSheet.create({
   },
 
   addressLabel: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
     lineHeight: 18,
@@ -173,8 +175,8 @@ export default StyleSheet.create({
   },
 
   pickupName: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     lineHeight: 18,
     letterSpacing: -0.165,
@@ -185,8 +187,8 @@ export default StyleSheet.create({
   },
 
   pickupAdress: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     alignSelf: "flex-start",
     fontWeight: "normal",
     lineHeight: 18,
@@ -219,8 +221,8 @@ export default StyleSheet.create({
   },
 
   detailsLabel: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     marginBottom: 4,
     fontWeight: "normal",
     lineHeight: 18,
@@ -230,8 +232,8 @@ export default StyleSheet.create({
   },
 
   detailsText: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "normal",
     lineHeight: 24,
     letterSpacing: -0.165,
@@ -247,8 +249,8 @@ export default StyleSheet.create({
   },
 
   emptyDeliveriesText: {
-    // fontFamily: "Source Sans Pro",
-    // fontStyle: "normal",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     width: 183,
     marginTop: 27,
     marginBottom: 37,
