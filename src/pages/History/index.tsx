@@ -103,7 +103,7 @@ export default function History() {
             {/* body */}
             <Text style={styles.size}>{delivery.size}</Text>
 
-            <Text style={styles.timeRemaining}>{delivery.status > 0 && "Tempo restante"}</Text>
+            {/* <Text style={styles.timeRemaining}>{delivery.status > 0 && "Tempo restante"}</Text> */}
             <Text style={styles.addressLabel}>Retirou em</Text>
             <Text style={styles.pickupName}>{delivery.pickupName}</Text>
             <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>

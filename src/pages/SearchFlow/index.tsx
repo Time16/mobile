@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as Location from "expo-location";
 
@@ -14,9 +14,9 @@ interface Params {
 export default function DeliveryFlow() {
   const navigation = useNavigation();
 
-  const [initialPosition, setInitialPosition] = useState({ latitude: 0, longitude: 0 });
-  const [distance, setDistance] = useState("");
-  const [duration, useDuration] = useState("");
+  const [, setInitialPosition] = useState({ latitude: 0, longitude: 0 });
+  const [] = useState("");
+  const [] = useState("");
 
   const route = useRoute();
   const routeParams = route.params as Params;
@@ -80,12 +80,12 @@ export default function DeliveryFlow() {
 
         <View style={styles.pickupDetails}>
           <Image source={require("../../assets/deliveries/route.png")} />
-          <View>
+          {/* <View>
             <Text style={styles.detailsLabel}>Tempo e distância estimada da entrega</Text>
             <Text style={styles.detailsText}>
               {duration} min / {distance} km
             </Text>
-          </View>
+          </View> */}
         </View>
 
         <Text style={styles.detailsLabel}>Tamanho do pedido</Text>
