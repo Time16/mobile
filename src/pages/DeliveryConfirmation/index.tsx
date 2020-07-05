@@ -2,26 +2,10 @@ import React, { useState } from 'react';
 import { Modal, View, TouchableHighlight, Text, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import StarRating from 'react-native-star-rating';
+import { finishDelivery } from '../../state';
+import { Delivery } from '../../types';
 
 import styles from './styles';
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
 
 interface Params {
   delivery: Delivery;
@@ -36,6 +20,11 @@ export default function DeliveryConfirmation() {
   const route = useRoute();
   const routeParams = route.params as Params;
   const delivery = routeParams.delivery;
+
+  function confirmDelivery() {
+    finishDelivery(delivery.id);
+    navigation.navigate('Deliveries');
+  }
 
   return(
     <Modal
@@ -77,12 +66,7 @@ export default function DeliveryConfirmation() {
           <View style={styles.footer}>
             <TouchableHighlight
               style={{ ...styles.button }}
-              onPress={() => {
-                if (delivery.status < 2) {
-                  delivery.status++;
-                }
-                navigation.navigate('Deliveries');
-              }}
+              onPress={() => confirmDelivery()}
             >
               <Text style={styles.buttonText}>Finalizar</Text>
             </TouchableHighlight>

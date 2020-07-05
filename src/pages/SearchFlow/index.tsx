@@ -4,25 +4,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import * as Location from "expo-location";
 
 import styles from "./styles";
-import Config from "../../config/config";
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
+import { Delivery } from "../../types";
+import { acceptDelivery } from "../../state";
 
 interface Params {
   delivery: Delivery;
@@ -57,6 +40,7 @@ export default function DeliveryFlow() {
   }, []);
 
   function confirmDelivery() {
+    acceptDelivery(delivery.id);
     navigation.navigate("Search");
   }
 
@@ -92,7 +76,7 @@ export default function DeliveryFlow() {
 
         <Text style={styles.addressLabel}>Retirar em</Text>
         <Text style={styles.pickupName}>{delivery.pickupName}</Text>
-        <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
+        <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>
 
         <View style={styles.pickupDetails}>
           <Image source={require("../../assets/deliveries/route.png")} />

@@ -1,73 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useIsFocused } from '@react-navigation/native';
+
+import { getAvailable } from "../../state";
+import { Delivery } from "../../types";
 
 import styles from "./styles";
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
 
 export default function Search() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
 
   const navigation = useNavigation();
 
+  const isFocused = useIsFocused();
   useEffect(() => {
-    // get deliveries array from api
-    setDeliveries([
-      {
-        id: 478237472,
-        status: 0,
-        price: 9.52,
-        size: "Grande",
-        pickupName: "Padaria Alem do Pão",
-        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-        duration: 20,
-        distance: 3,
-        timeStart: 12,
-      },
-      {
-        id: 4782372472,
-        status: 1,
-        price: 9.52,
-        size: "Pequeno",
-        pickupName: "Padaria Alem do Pão",
-        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-        duration: 20,
-        distance: 3,
-        timeStart: 12,
-      },
-      {
-        id: 4782472,
-        status: 2,
-        price: 9.52,
-        size: "Grande",
-        pickupName: "Padaria Alem do Pão",
-        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-        duration: 20,
-        distance: 3,
-        timeStart: 12,
-      },
-    ]);
-  }, []);
+    setDeliveries(getAvailable());
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
@@ -99,18 +48,18 @@ export default function Search() {
             <Text style={styles.timeRemaining}>{delivery.status > 0 && "Tempo restante"}</Text>
             <Text style={styles.addressLabel}>Retirar em</Text>
             <Text style={styles.pickupName}>{delivery.pickupName}</Text>
-            <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
+            <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>
             {/* footer */}
             <View style={styles.itemFooter}>
               <View style={styles.detailsBox}>
                 <Image source={require("../../assets/deliveries/route.png")} />
 
-                <View style={styles.details}>
+                {/* <View style={styles.details}>
                   <Text style={styles.detailsLabel}>Tempo e distância estimada</Text>
                   <Text style={styles.detailsText}>
                     {delivery.duration}min / {delivery.distance}km
                   </Text>
-                </View>
+                </View> */}
               </View>
 
               <TouchableOpacity

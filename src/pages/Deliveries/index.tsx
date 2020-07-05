@@ -1,72 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import api from "../../services/api";
+
+import { getAccepted, updateVeliveryStatus, initDeliveryStatus } from '../../state';
 
 import { Delivery } from "../../types";
 
 import styles from "./styles";
 
 export default function Home() {
-  const [deliveries, setDeliveries] = useState<Delivery[]>([
-    {
-      "id": 0,
-      "status": 1,
-      "price": 9,
-      "size": "Grande",
-      "pickupName": "Padaria Alem do Pão",
-      "pickupAddress": "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-      "pickupLocation": {
-        "latitude": -15.8703626,
-        "longitude": -47.9686797
-      },
-      "deliveryName": "João Carlos Marinho",
-      "deliveryAddress": "R. São Francisco número 202",
-      "deliveryLocation": {
-        "latitude": -15.8687677,
-        "longitude": -47.9663086
-      },
-      "timeStart": 12
-    },
-    {
-      "id": 1,
-      "status": 0,
-      "price": 5,
-      "size": "Pequeno",
-      "pickupName": "Mercado da Ana",
-      "pickupAddress": "R. Jandira Lote 2 Número 1",
-      "pickupLocation": {
-        "latitude": -15.8703626,
-        "longitude": -47.9686797
-      },
-      "deliveryName": "Maria Aparecida",
-      "deliveryAddress": "R. Araguaia Casa 503",
-      "deliveryLocation": {
-        "latitude": -15.8687677,
-        "longitude": -47.9663086
-      },
-      "timeStart": 10
-    },
-    {
-      "id": 2,
-      "status": 0,
-      "price": 7,
-      "size": "Médio",
-      "pickupName": "Mercadinho Melhor Preço",
-      "pickupAddress": "Avenida Araújo número 2",
-      "pickupLocation": {
-        "latitude": -15.8703626,
-        "longitude": -47.9686797
-      },
-      "deliveryName": "João Carlos Marinho",
-      "deliveryAddress": "Avenida Araújo Número 505",
-      "deliveryLocation": {
-        "latitude": -15.8687677,
-        "longitude": -47.9663086
-      },
-      "timeStart": 18
-    }
-  ]);
+  const [deliveries, setDeliveries] = useState<Delivery[]>([]);
 
   const navigation = useNavigation();
   const dictionary = [
@@ -75,9 +19,15 @@ export default function Home() {
     { status: "Entregando", addressLabel: "Entregar em" },
   ];
 
+  const isFocused = useIsFocused();
   useEffect(() => {
-    // get deliveries array from api
-  }, []);
+    setDeliveries(getAccepted());
+  }, [isFocused]);
+
+  function initDelivery(delivery: Delivery) {
+    initDeliveryStatus(delivery.id);
+    navigation.navigate('DeliveryFlow', {delivery: delivery})
+  }
 
   return (
     <View style={styles.container}>
@@ -90,7 +40,7 @@ export default function Home() {
         <FlatList
           showsVerticalScrollIndicator={false}
           style={styles.deliveries}
-          data={deliveries.filter(delivery => delivery.status < 2)}
+          data={deliveries}
           keyExtractor={(delivery) => String(delivery.id)}
           renderItem={({ item: delivery }) => (
             <View key={delivery.id} style={styles.delivery}>
@@ -138,12 +88,7 @@ export default function Home() {
 
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={() => {
-                    if (delivery.status < 2) {
-                      delivery.status++;
-                    }
-                    navigation.navigate('DeliveryFlow', {delivery: delivery})
-                  }}
+                  onPress={() => initDelivery(delivery)}
                 >
                   <Text style={styles.buttonText}>Continuar</Text>
                 </TouchableOpacity>
