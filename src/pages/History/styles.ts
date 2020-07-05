@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#E5E5E5",
     alignItems: "center",
-    justifyContent: "flex-start",
   },
 
   button: {
