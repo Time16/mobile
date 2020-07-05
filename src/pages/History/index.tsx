@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList, Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
@@ -33,6 +33,10 @@ export default function History() {
     { color: "#6FCF97", current: false },
     { color: "#219653", current: false },
   ];
+
+  function openPhoneHelp() {
+    Linking.openURL(`tel:${"36363636"}`);
+  }
 
   useEffect(() => {
     // get deliveries array from api
@@ -167,10 +171,7 @@ export default function History() {
                 </View>
               </View>
 
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate("DeliveryFlow", { delivery: delivery })}
-              >
+              <TouchableOpacity style={styles.button} onPress={openPhoneHelp}>
                 <Text style={styles.buttonText}>Ajuda</Text>
               </TouchableOpacity>
             </View>

@@ -115,7 +115,7 @@ export default function Search() {
 
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate("DeliveryFlow", { delivery: delivery })}
+                onPress={() => navigation.navigate("SearchFlow", { delivery: delivery })}
               >
                 <Text style={styles.buttonText}>Aceitar</Text>
               </TouchableOpacity>
