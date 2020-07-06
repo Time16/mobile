@@ -94,11 +94,11 @@ export default function History() {
                 <View style={styles.detailsData}>
                   <Text style={styles.detailsTitle}>Agente Iniciante</Text>
 
-              <View style={styles.detailsHistory}>
-                <View style={styles.detailsDeliveries}>
-                  <Text style={styles.deliveriesNumber}>{deliveries.length}</Text>
-                  <Text style={styles.deliveriesTitle}>entregas</Text>
-                </View>
+                  <View style={styles.detailsHistory}>
+                    <View style={styles.detailsDeliveries}>
+                      <Text style={styles.deliveriesNumber}>{deliveries.length}</Text>
+                      <Text style={styles.deliveriesTitle}>entregas</Text>
+                    </View>
 
                     <View style={styles.detailsLevel}>
                       <View style={styles.levelScore}>

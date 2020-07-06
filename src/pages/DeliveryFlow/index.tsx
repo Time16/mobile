@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert } from "react-native";
 import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
-import * as Location from 'expo-location';
+import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 
@@ -22,7 +22,7 @@ export default function DeliveryFlow() {
       distanceLabel: "Tempo até o estabelecimento",
       title: "Busque o pedido",
       buttonMessage: "Cheguei no estabelecimento",
-      navigation: "PickupConfirmation"
+      navigation: "PickupConfirmation",
     },
     {
       status: "Buscando",
@@ -30,7 +30,7 @@ export default function DeliveryFlow() {
       distanceLabel: "Tempo até o estabelecimento",
       title: "Busque o pedido",
       buttonMessage: "Cheguei no estabelecimento",
-      navigation: "PickupConfirmation"
+      navigation: "PickupConfirmation",
     },
     {
       status: "Entregando",
@@ -38,18 +38,18 @@ export default function DeliveryFlow() {
       distanceLabel: "Tempo até o destino",
       title: "Entregue o pedido",
       buttonMessage: "Entreguei o pedido",
-      navigation: "DeliveryConfirmation"
+      navigation: "DeliveryConfirmation",
     },
   ];
 
   const mapRef = useRef<MapView>(null);
 
-  const [initialPosition, setInitialPosition] = useState({latitude: 0, longitude: 0});
-  const [distance, setDistance] = useState('');
-  const [duration, useDuration] = useState('');
+  const [initialPosition, setInitialPosition] = useState({ latitude: 0, longitude: 0 });
+  const [distance, setDistance] = useState("");
+  const [duration, useDuration] = useState("");
 
-  const [mk1Coordinate, setMk1Coordinate] = useState({latitude: 0, longitude: 0});
-  const [mk2Coordinate, setMk2Coordinate] = useState({latitude: 0, longitude: 0});
+  const [mk1Coordinate, setMk1Coordinate] = useState({ latitude: 0, longitude: 0 });
+  const [mk2Coordinate, setMk2Coordinate] = useState({ latitude: 0, longitude: 0 });
 
   const route = useRoute();
   const routeParams = route.params as Params;
@@ -60,26 +60,26 @@ export default function DeliveryFlow() {
     async function loadPosition() {
       const { status } = await Location.requestPermissionsAsync();
 
-      if (status !== 'granted') {
-        Alert.alert('Ops', 'Precisamos de sua permissão para calcular sua rota');
+      if (status !== "granted") {
+        Alert.alert("Ops", "Precisamos de sua permissão para calcular sua rota");
         return;
       }
-  
+
       const location = await Location.getCurrentPositionAsync();
       const { latitude, longitude } = location.coords;
 
       if (delivery.status === 2) {
         setInitialPosition({
           latitude: delivery.pickupLocation.latitude,
-          longitude: delivery.pickupLocation.longitude
+          longitude: delivery.pickupLocation.longitude,
         });
         setMk1Coordinate({
           latitude: delivery.pickupLocation.latitude,
-          longitude: delivery.pickupLocation.longitude
+          longitude: delivery.pickupLocation.longitude,
         });
       } else {
-        setInitialPosition({latitude, longitude});
-        setMk1Coordinate({latitude, longitude});
+        setInitialPosition({ latitude, longitude });
+        setMk1Coordinate({ latitude, longitude });
       }
     }
     loadPosition();
@@ -88,34 +88,33 @@ export default function DeliveryFlow() {
   }, [isFocused]);
 
   useEffect(() => {
-    mapRef.current?.fitToSuppliedMarkers(
-      ['mk1','mk2'],
-      {edgePadding: {top: 100, right: 0, bottom: 0, left: 0}}
-    );
+    mapRef.current?.fitToSuppliedMarkers(["mk1", "mk2"], {
+      edgePadding: { top: 100, right: 0, bottom: 0, left: 0 },
+    });
   }, [mk1Coordinate, mk2Coordinate]);
 
   function openMap() {
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === "ios") {
       Linking.openURL(
-        `http://maps.apple.com/maps/dir/`+
-        `${mk1Coordinate.latitude},+${mk1Coordinate.longitude}/`+
-        `'${mk2Coordinate.latitude},${mk2Coordinate.longitude}'`
+        `http://maps.apple.com/maps/dir/` +
+          `${mk1Coordinate.latitude},+${mk1Coordinate.longitude}/` +
+          `'${mk2Coordinate.latitude},${mk2Coordinate.longitude}'`
       );
-    } else if (Platform.OS === 'android') {
+    } else if (Platform.OS === "android") {
       Linking.openURL(
-        `https://www.google.com/maps/dir/`+
-        `${mk1Coordinate.latitude},+${mk1Coordinate.longitude}/`+
-        `'${mk2Coordinate.latitude},${mk2Coordinate.longitude}'`
+        `https://www.google.com/maps/dir/` +
+          `${mk1Coordinate.latitude},+${mk1Coordinate.longitude}/` +
+          `'${mk2Coordinate.latitude},${mk2Coordinate.longitude}'`
       );
     }
   }
 
   function openPhoneClient() {
-    Linking.openURL(`tel:${'35353535'}`);
+    Linking.openURL(`tel:${"35353535"}`);
   }
 
-  function openPhoneHelp() { 
-    Linking.openURL(`tel:${'36363636'}`);
+  function openPhoneHelp() {
+    Linking.openURL(`tel:${"36363636"}`);
   }
 
   return (
@@ -142,7 +141,7 @@ export default function DeliveryFlow() {
           <View style={styles.itemTimeStart}>
             <Image source={require("../../assets/deliveries/clock.png")} />
             <Text style={styles.statusLabel}>
-              {delivery.timeStart}:00 - {delivery.timeStart + 2}
+              {delivery.timeStart}:00 - {delivery.timeStart + 2}:00
             </Text>
           </View>
         </View>
@@ -164,68 +163,70 @@ export default function DeliveryFlow() {
           </>
         )}
         <Text style={styles.detailsLabel}>{dictionary[delivery.status].distanceLabel}</Text>
-        <Text style={styles.detailsText}>{duration} min / {distance} km</Text>
+        <Text style={styles.detailsText}>
+          {duration} min / {distance} km
+        </Text>
 
         {/* map */}
         <View style={styles.mapContainer}>
-        { initialPosition.latitude !== 0 && (
-          <MapView
-            style={styles.map}
-            ref={mapRef}
-            loadingEnabled={true}
-            onMapReady={() => {
-              mapRef.current?.fitToElements(true);
-              mapRef.current?.fitToSuppliedMarkers(
-                  ['mk1','mk2'],
-                  {edgePadding: {top: 100, right: 0, bottom: 0, left: 0}}
-                )
-              }
-            }
-          >
-            <MapViewDirections
-              origin={initialPosition}
-              destination={delivery.status === 1 ? delivery.pickupLocation : delivery.deliveryLocation}
-              apikey={Config.GOOGLE_MAPS_APIKEY}
-              region='BR'
-              strokeWidth={5}
-              strokeColor="#431E93"
-              onReady={result => {
-                setDistance(result.distance.toFixed(1));
-                useDuration(result.duration.toFixed(0));
+          {initialPosition.latitude !== 0 && (
+            <MapView
+              style={styles.map}
+              ref={mapRef}
+              loadingEnabled={true}
+              onMapReady={() => {
+                mapRef.current?.fitToElements(true);
+                mapRef.current?.fitToSuppliedMarkers(["mk1", "mk2"], {
+                  edgePadding: { top: 100, right: 0, bottom: 0, left: 0 },
+                });
               }}
-            />
-            <Marker
-              key={String(1)}
-              onPress={() => {}}
-              coordinate={mk1Coordinate}
-              title={'Você'}
-              identifier={'mk1'}
-            />
-            <Marker
-              key={String(2)}
-              onPress={() => {}}
-              coordinate={mk2Coordinate}
-              title={delivery.pickupName.toString()}
-              identifier={'mk2'}
-            />
-          </MapView>
-        )}
+            >
+              <MapViewDirections
+                origin={initialPosition}
+                destination={
+                  delivery.status === 1 ? delivery.pickupLocation : delivery.deliveryLocation
+                }
+                apikey={Config.GOOGLE_MAPS_APIKEY}
+                region="BR"
+                strokeWidth={5}
+                strokeColor="#431E93"
+                onReady={(result) => {
+                  setDistance(result.distance.toFixed(1));
+                  useDuration(result.duration.toFixed(0));
+                }}
+              />
+              <Marker
+                key={String(1)}
+                onPress={() => {}}
+                coordinate={mk1Coordinate}
+                title={"Você"}
+                identifier={"mk1"}
+              />
+              <Marker
+                key={String(2)}
+                onPress={() => {}}
+                coordinate={mk2Coordinate}
+                title={delivery.pickupName.toString()}
+                identifier={"mk2"}
+              />
+            </MapView>
+          )}
         </View>
 
         <View style={styles.buttonContainer}>
           <View>
             <TouchableOpacity onPress={openMap} style={styles.openMapButton}>
-              <Image source={require('../../assets/openMapButton.png')}/>
+              <Image source={require("../../assets/openMapButton.png")} />
               <Text>Abrir mapa</Text>
             </TouchableOpacity>
           </View>
-          <View style={{flexDirection: 'row',}}>
+          <View style={{ flexDirection: "row" }}>
             <TouchableOpacity onPress={openPhoneClient} style={styles.callClientButton}>
-              <Image source={require('../../assets/callClientButton.png')}/>
+              <Image source={require("../../assets/callClientButton.png")} />
               <Text>Ligar pro{"\n"}cliente</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={openPhoneHelp} style={styles.helpButton}>
-              <Image source={require('../../assets/helpButton.png')}/>
+              <Image source={require("../../assets/helpButton.png")} />
               <Text>Ajuda</Text>
             </TouchableOpacity>
           </View>
@@ -236,7 +237,7 @@ export default function DeliveryFlow() {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate(dictionary[delivery.status].navigation, {delivery: delivery})
+              navigation.navigate(dictionary[delivery.status].navigation, { delivery: delivery });
             }}
           >
             <Text style={styles.buttonText}>{dictionary[delivery.status].buttonMessage}</Text>

@@ -68,7 +68,7 @@ export default function DeliveryFlow() {
           <Text style={styles.price}>R$ {delivery.price}</Text>
           <View style={styles.itemTimeStart}>
             <Text style={styles.timeStart}>
-              {delivery.timeStart}:00 - {delivery.timeStart + 2}
+              {delivery.timeStart}:00 - {delivery.timeStart + 2}:00
             </Text>
           </View>
         </View>
