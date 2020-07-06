@@ -91,14 +91,12 @@ export default function Home() {
                     <View style={styles.itemTimeStart}>
                       <Image source={require("../../assets/deliveries/clock.png")} />
                       <Text style={styles.timeWindow}>
-                        {delivery.timeStart}:00 - {delivery.timeStart + 2}
+                        {delivery.timeStart}:00 - {delivery.timeStart + 2}:00
                       </Text>
                     </View>
                   </View>
                   {/* body */}
-                  <Text style={styles.timeRemaining}>
-                    {delivery.status > 0 && "Tempo restante"}
-                  </Text>
+                  <Text style={styles.timeRemaining}>Janela de entrega</Text>
                   <Text style={styles.price}>R$ {delivery.price}</Text>
                   <Text style={styles.size}>{delivery.size}</Text>
                   <Text style={styles.addressLabel}>

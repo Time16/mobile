@@ -38,14 +38,23 @@ export default function Search() {
               <View style={styles.itemTimeStart}>
                 <Image source={require("../../assets/deliveries/clock.png")} />
                 <Text style={styles.timeWindow}>
-                  {delivery.timeStart}:00 - {delivery.timeStart + 2}
+                  {delivery.timeStart}:00 - {delivery.timeStart + 2}:00
                 </Text>
               </View>
             </View>
             {/* body */}
-            <Text style={styles.size}>{delivery.size}</Text>
+            <View
+              style={{
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <Text style={styles.size}>{delivery.size}</Text>
 
-            <Text style={styles.timeRemaining}>{delivery.status > 0 && "Tempo restante"}</Text>
+              <Text style={styles.timeRemaining}>Janela de entrega</Text>
+            </View>
             <Text style={styles.addressLabel}>Retirar em</Text>
             <Text style={styles.pickupName}>{delivery.pickupName}</Text>
             <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>
