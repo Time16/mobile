@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-community/async-storage";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -14,12 +14,13 @@ export default function Home() {
   const navigation = useNavigation();
 
   async function HandleLogin() {
-    // const response = await api.post("", {
-    //   email,
-    //   password,
-    // });
+    const response = await api.post("users/login", {
+      email,
+      password,
+    });
 
-    // await AsyncStorage.setItem("user", email);
+    api.defaults.headers["Authorization"] = `Bearer ${response.headers["set-cookie"][0]}`;
+    await AsyncStorage.setItem("token", response.headers["set-cookie"][0]);
 
     navigation.navigate("Deliveries");
   }
@@ -36,6 +37,7 @@ export default function Home() {
         <TextInput
           style={styles.email}
           value={email}
+          autoCapitalize="none"
           onChangeText={(text) => setEmail(text)}
           autoCorrect={false}
         />
