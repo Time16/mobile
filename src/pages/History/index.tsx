@@ -97,6 +97,45 @@ export default function History() {
     }
 
     // getHistory();
+
+    setDeliveries([
+      {
+        id: 478237472,
+        status: 0,
+        price: 9.52,
+        size: "Grande",
+        pickupName: "Padaria Alem do Pão",
+        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
+        duration: 20,
+        distance: 3,
+        timeStart: 12,
+      },
+      {
+        id: 4782372472,
+        status: 1,
+        price: 9.52,
+        size: "Pequeno",
+        pickupName: "Padaria Alem do Pão",
+        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
+        duration: 20,
+        distance: 3,
+        timeStart: 12,
+      },
+      {
+        id: 4782472,
+        status: 2,
+        price: 9.52,
+        size: "Grande",
+        pickupName: "Padaria Alem do Pão",
+        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
+        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
+        duration: 20,
+        distance: 3,
+        timeStart: 12,
+      },
+    ]);
   }, []);
 
   return (
@@ -181,16 +220,23 @@ export default function History() {
                     <View style={styles.itemTimeStart}>
                       <Image source={require("../../assets/deliveries/clock.png")} />
                       <Text style={styles.timeWindow}>
-                        {delivery.timeStart}:00 - {delivery.timeStart + 2}
+                        {delivery.timeStart}:00 - {delivery.timeStart + 2}:00
                       </Text>
                     </View>
                   </View>
                   {/* body */}
-                  <Text style={styles.size}>{delivery.size}</Text>
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={styles.size}>{delivery.size}</Text>
 
-                  <Text style={styles.timeRemaining}>
-                    {delivery.status > 0 && "Tempo restante"}
-                  </Text>
+                    <Text style={styles.timeRemaining}>Janela de entrega</Text>
+                  </View>
                   <Text style={styles.addressLabel}>Retirou em</Text>
                   <Text style={styles.pickupName}>{delivery.pickupName}</Text>
                   <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>

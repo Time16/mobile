@@ -14,13 +14,13 @@ export default function Home() {
   const navigation = useNavigation();
 
   async function HandleLogin() {
-    const response = await api.post("users/login", {
-      email,
-      password,
-    });
+    // const response = await api.post("users/login", {
+    //   email,
+    //   password,
+    // });
 
-    api.defaults.headers["Authorization"] = `Bearer ${response.headers["set-cookie"][0]}`;
-    await AsyncStorage.setItem("token", response.headers["set-cookie"][0]);
+    // api.defaults.headers["Authorization"] = `Bearer ${response.headers["set-cookie"][0]}`;
+    // await AsyncStorage.setItem("token", response.headers["set-cookie"][0]);
 
     navigation.navigate("Deliveries");
   }
