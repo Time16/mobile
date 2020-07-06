@@ -19,7 +19,6 @@ export default function Home() {
     //   password,
     // });
 
-    // api.defaults.headers["Authorization"] = `Bearer ${response.headers["set-cookie"][0]}`;
     // await AsyncStorage.setItem("token", response.headers["set-cookie"][0]);
 
     navigation.navigate("Deliveries");
