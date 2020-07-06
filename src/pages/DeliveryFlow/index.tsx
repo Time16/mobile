@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
 import * as Location from 'expo-location';
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
@@ -48,10 +48,14 @@ export default function DeliveryFlow() {
   const [distance, setDistance] = useState('');
   const [duration, useDuration] = useState('');
 
+  const [mk1Coordinate, setMk1Coordinate] = useState({latitude: 0, longitude: 0});
+  const [mk2Coordinate, setMk2Coordinate] = useState({latitude: 0, longitude: 0});
+
   const route = useRoute();
   const routeParams = route.params as Params;
   const delivery = routeParams.delivery;
 
+  const isFocused = useIsFocused();
   useEffect(() => {
     async function loadPosition() {
       const { status } = await Location.requestPermissionsAsync();
@@ -64,23 +68,44 @@ export default function DeliveryFlow() {
       const location = await Location.getCurrentPositionAsync();
       const { latitude, longitude } = location.coords;
 
-      setInitialPosition({latitude, longitude});
+      if (delivery.status === 2) {
+        setInitialPosition({
+          latitude: delivery.pickupLocation.latitude,
+          longitude: delivery.pickupLocation.longitude
+        });
+        setMk1Coordinate({
+          latitude: delivery.pickupLocation.latitude,
+          longitude: delivery.pickupLocation.longitude
+        });
+      } else {
+        setInitialPosition({latitude, longitude});
+        setMk1Coordinate({latitude, longitude});
+      }
     }
     loadPosition();
-  }, []);
+
+    setMk2Coordinate(delivery.status === 1 ? delivery.pickupLocation : delivery.deliveryLocation);
+  }, [isFocused]);
+
+  useEffect(() => {
+    mapRef.current?.fitToSuppliedMarkers(
+      ['mk1','mk2'],
+      {edgePadding: {top: 100, right: 0, bottom: 0, left: 0}}
+    );
+  }, [mk1Coordinate, mk2Coordinate]);
 
   function openMap() {
     if (Platform.OS === 'ios') {
       Linking.openURL(
         `http://maps.apple.com/maps/dir/`+
-        `${initialPosition.latitude},+${initialPosition.longitude}/`+
-        `'${delivery.pickupLocation.latitude},${delivery.pickupLocation.longitude}'`
+        `${mk1Coordinate.latitude},+${mk1Coordinate.longitude}/`+
+        `'${mk2Coordinate.latitude},${mk2Coordinate.longitude}'`
       );
     } else if (Platform.OS === 'android') {
       Linking.openURL(
         `https://www.google.com/maps/dir/`+
-        `${initialPosition.latitude},+${initialPosition.longitude}/`+
-        `'${delivery.pickupLocation.latitude},${delivery.pickupLocation.longitude}'`
+        `${mk1Coordinate.latitude},+${mk1Coordinate.longitude}/`+
+        `'${mk2Coordinate.latitude},${mk2Coordinate.longitude}'`
       );
     }
   }
@@ -172,14 +197,14 @@ export default function DeliveryFlow() {
             <Marker
               key={String(1)}
               onPress={() => {}}
-              coordinate={initialPosition}
+              coordinate={mk1Coordinate}
               title={'Você'}
               identifier={'mk1'}
             />
             <Marker
               key={String(2)}
               onPress={() => {}}
-              coordinate={delivery.pickupLocation}
+              coordinate={mk2Coordinate}
               title={delivery.pickupName.toString()}
               identifier={'mk2'}
             />

@@ -1,26 +1,10 @@
 import React from "react";
 import { Modal, View, TouchableHighlight, Text } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { Delivery } from "../../types";
 
 import styles from './styles';
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
+import { updateVeliveryStatus } from "../../state";
 
 interface Params {
   delivery: Delivery;
@@ -32,6 +16,11 @@ export default function PickupConfirmation() {
   const route = useRoute();
   const routeParams = route.params as Params;
   const delivery = routeParams.delivery;
+
+  function confirmPickup() {
+    updateVeliveryStatus(delivery.id);
+    navigation.navigate('DeliveryFlow', {delivey: delivery});
+  }
 
   return(
     <Modal
@@ -56,10 +45,7 @@ export default function PickupConfirmation() {
           <View style={styles.footer}>
             <TouchableHighlight
               style={{ ...styles.button }}
-              onPress={() => {
-                delivery.status = 2;
-                navigation.navigate('DeliveryFlow', {delivey: delivery});
-              }}
+              onPress={() => confirmPickup()}
             >
               <Text style={styles.buttonText}>Confirmar o pedido</Text>
             </TouchableHighlight>

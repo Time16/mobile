@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, Platform, Linking, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as Location from "expo-location";
 
 import styles from "./styles";
-import Config from "../../config/config";
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
+import { Delivery } from "../../types";
+import { acceptDelivery } from "../../state";
 
 interface Params {
   delivery: Delivery;
@@ -31,9 +14,9 @@ interface Params {
 export default function DeliveryFlow() {
   const navigation = useNavigation();
 
-  const [initialPosition, setInitialPosition] = useState({ latitude: 0, longitude: 0 });
-  const [distance, setDistance] = useState("");
-  const [duration, useDuration] = useState("");
+  const [, setInitialPosition] = useState({ latitude: 0, longitude: 0 });
+  const [] = useState("");
+  const [] = useState("");
 
   const route = useRoute();
   const routeParams = route.params as Params;
@@ -57,6 +40,7 @@ export default function DeliveryFlow() {
   }, []);
 
   function confirmDelivery() {
+    acceptDelivery(delivery.id);
     navigation.navigate("Search");
   }
 
@@ -92,16 +76,16 @@ export default function DeliveryFlow() {
 
         <Text style={styles.addressLabel}>Retirar em</Text>
         <Text style={styles.pickupName}>{delivery.pickupName}</Text>
-        <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
+        <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>
 
         <View style={styles.pickupDetails}>
           <Image source={require("../../assets/deliveries/route.png")} />
-          <View>
+          {/* <View>
             <Text style={styles.detailsLabel}>Tempo e distância estimada da entrega</Text>
             <Text style={styles.detailsText}>
               {duration} min / {distance} km
             </Text>
-          </View>
+          </View> */}
         </View>
 
         <Text style={styles.detailsLabel}>Tamanho do pedido</Text>

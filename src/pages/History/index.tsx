@@ -1,40 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, FlatList, Linking } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { Delivery } from "../../types";
 import api from "../../services/api";
 
 import styles from "./styles";
-
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Delivery {
-  id: number;
-  status: number;
-  price: number;
-  size: String;
-  pickupName: String;
-  pickUpAdress: String;
-  pickUpLocation: Location;
-  duration: number;
-  distance: number;
-  timeStart: number;
-}
+import { getHistory } from "../../state";
 
 export default function History() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([
     {
-      id: 0,
+      id: -1,
+      accepted: false,
+      finished: false,
       status: 0,
       price: 0,
       size: "",
       pickupName: "",
-      pickUpAdress: "",
-      pickUpLocation: { latitude: 0, longitude: 0 },
-      duration: 0,
-      distance: 0,
+      pickupAddress: "",
+      pickupLocation: {
+        latitude: 0,
+        longitude: 0,
+      },
+      deliveryName: "",
+      deliveryAddress: "",
+      deliveryLocation: {
+        latitude: 0,
+        longitude: 0,
+      },
       timeStart: 0,
     },
   ]);
@@ -52,91 +45,10 @@ export default function History() {
     Linking.openURL(`tel:${"36363636"}`);
   }
 
+  const isFocused = useIsFocused();
   useEffect(() => {
-    async function getHistory() {
-      const response = await api.get("");
-
-      setDeliveries([
-        {
-          id: 478237472,
-          status: 0,
-          price: 9.52,
-          size: "Grande",
-          pickupName: "Padaria Alem do Pão",
-          pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-          pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-          duration: 20,
-          distance: 3,
-          timeStart: 12,
-        },
-        {
-          id: 4782372472,
-          status: 1,
-          price: 9.52,
-          size: "Pequeno",
-          pickupName: "Padaria Alem do Pão",
-          pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-          pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-          duration: 20,
-          distance: 3,
-          timeStart: 12,
-        },
-        {
-          id: 4782472,
-          status: 2,
-          price: 9.52,
-          size: "Grande",
-          pickupName: "Padaria Alem do Pão",
-          pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-          pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-          duration: 20,
-          distance: 3,
-          timeStart: 12,
-        },
-      ]);
-    }
-
-    // getHistory();
-
-    setDeliveries([
-      {
-        id: 478237472,
-        status: 0,
-        price: 9.52,
-        size: "Grande",
-        pickupName: "Padaria Alem do Pão",
-        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-        duration: 20,
-        distance: 3,
-        timeStart: 12,
-      },
-      {
-        id: 4782372472,
-        status: 1,
-        price: 9.52,
-        size: "Pequeno",
-        pickupName: "Padaria Alem do Pão",
-        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-        duration: 20,
-        distance: 3,
-        timeStart: 12,
-      },
-      {
-        id: 4782472,
-        status: 2,
-        price: 9.52,
-        size: "Grande",
-        pickupName: "Padaria Alem do Pão",
-        pickUpAdress: "R. Prof. Augusto Lins e Silva, 211 - Boa Viagem, Recife - PE, 51030-340",
-        pickUpLocation: { latitude: 45.65645645, longitude: -26.65645645 },
-        duration: 20,
-        distance: 3,
-        timeStart: 12,
-      },
-    ]);
-  }, []);
+    setDeliveries(getHistory());
+  }, [isFocused]);
 
   return (
     <View
@@ -145,7 +57,7 @@ export default function History() {
         { justifyContent: deliveries.length > 0 ? "flex-start" : "space-between" },
       ]}
     >
-      {deliveries[0].id !== 0 && (
+      {deliveries[0]?.id !== -1 && (
         <>
           <View style={styles.header}>
             {/* profile */}
@@ -184,7 +96,7 @@ export default function History() {
 
                   <View style={styles.detailsHistory}>
                     <View style={styles.detailsDeliveries}>
-                      <Text style={styles.deliveriesNumber}>0</Text>
+                      <Text style={styles.deliveriesNumber}>{deliveries.length}</Text>
                       <Text style={styles.deliveriesTitle}>entregas</Text>
                     </View>
 
@@ -239,16 +151,16 @@ export default function History() {
                   </View>
                   <Text style={styles.addressLabel}>Retirou em</Text>
                   <Text style={styles.pickupName}>{delivery.pickupName}</Text>
-                  <Text style={styles.pickupAdress}>{delivery.pickUpAdress}</Text>
+                  <Text style={styles.pickupAdress}>{delivery.pickupAddress}</Text>
                   {/* footer */}
                   <View style={styles.itemFooter}>
                     <View style={styles.detailsBox}>
-                      <View style={styles.details}>
+                      {/* <View style={styles.details}>
                         <Text style={styles.detailsLabel}>Tempo e distância total</Text>
                         <Text style={styles.detailsText}>
                           {delivery.duration}min / {delivery.distance}km
                         </Text>
-                      </View>
+                      </View> */}
                     </View>
 
                     <TouchableOpacity style={styles.button} onPress={openPhoneHelp}>
